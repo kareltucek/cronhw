@@ -1,0 +1,11 @@
+loading config file
+executing command  echo second process running correctly 
+second process running correctly
+process exitted with status 0
+
+
+executing command  echo varvalue $notvar 
+varvalue
+process exitted with status 0
+
+

@@ -1,0 +1,37 @@
+Note: this codes were written as a school homework. They are not going to be maintained and are not meant to used in production. The only reason for publishing this is that its one of requirements.
+
+general description
+===================
+Cron daemon is used for task scheduling. The daemon wakes up every minute, goes through all records and for every one decides whether it is to be ran. If so, the supplemented command is executed in a separate shell and its output then outputted into the daemon's output. 
+
+process execution
+=================
+Command is executed as a separate process in /bin/sh. All processes get executed paralelly, thus order is not defined. When process finishes, it is checked and its output written to standard output. This is done every minute.
+
+cron format
+===========
+Tasks are accepted in the following format: <minutes> <hours> <day of month> <month> <day of week> <command>, where the first 5 fields are comma separated lists of numbers and ranges. Note that this format uses spaces as field separators, thus spaces are forbidden inside of a field (e.g. '1, 2' as <day of week> is invalid).
+
+variable expansion
+==================
+Standard shell-like variables can be used in the file. Line in format of <varname>=<value> can be used to set the variable varname to the value 'value'. Later the variable may be used as $varname. Double dollar is resolved to a single dollar. Variables are not evaluated recursively. 
+
+LOGNAME and HOME are preset from env, SHELL is set to /bin/sh and path is set to /bin:/usr/bin by default. All of these values may be overriden.
+
+Example:
+========
+path=/media/data
+30 8-20 * * 2 backup $path
+
+This executes 'backup /media/data' 12 times on every wensday (at 8:30,9:30 ...)
+
+compilation
+===========
+To compile this project, use the make command. The output file is mycrond.
+
+tests
+=====
+Some tests are provide with expected output in folders test1, test2, test3. 
+
+The binary was checked for memory leaks by valgrind.
+

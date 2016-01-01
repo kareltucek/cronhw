@@ -1,0 +1,233 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	Development	//
+BUFFSIZE	loader.h	10;"	d
+BUFFSIZE	loader.h	12;"	d
+DOM	task.h	9;"	d
+DOW	task.h	11;"	d
+EXECUTOR_GUARD	executor.h	2;"	d
+HOURS	task.h	8;"	d
+LIST_EMPTY	third-party/queue.h	186;"	d
+LIST_END	third-party/queue.h	185;"	d
+LIST_ENTRY	third-party/queue.h	175;"	d
+LIST_FIRST	third-party/queue.h	184;"	d
+LIST_FOREACH	third-party/queue.h	189;"	d
+LIST_FOREACH_SAFE	third-party/queue.h	194;"	d
+LIST_HEAD	third-party/queue.h	167;"	d
+LIST_HEAD_INITIALIZER	third-party/queue.h	172;"	d
+LIST_INIT	third-party/queue.h	202;"	d
+LIST_INSERT_AFTER	third-party/queue.h	206;"	d
+LIST_INSERT_BEFORE	third-party/queue.h	214;"	d
+LIST_INSERT_HEAD	third-party/queue.h	221;"	d
+LIST_NEXT	third-party/queue.h	187;"	d
+LIST_REMOVE	third-party/queue.h	228;"	d
+LIST_REPLACE	third-party/queue.h	237;"	d
+LOADER_GUARD	loader.h	2;"	d
+MINUTES	task.h	7;"	d
+MONTH	task.h	10;"	d
+PARSE_CTX_GUARD	parse_ctx.h	2;"	d
+RB_AUGMENT	third-party/tree.h	332;"	d
+RB_BLACK	third-party/tree.h	303;"	d
+RB_COLOR	third-party/tree.h	316;"	d
+RB_EMPTY	third-party/tree.h	318;"	d
+RB_ENTRY	third-party/tree.h	305;"	d
+RB_FIND	third-party/tree.h	721;"	d
+RB_FOREACH	third-party/tree.h	728;"	d
+RB_FOREACH_REVERSE	third-party/tree.h	738;"	d
+RB_FOREACH_REVERSE_SAFE	third-party/tree.h	743;"	d
+RB_FOREACH_SAFE	third-party/tree.h	733;"	d
+RB_GENERATE	third-party/tree.h	395;"	d
+RB_GENERATE_INTERNAL	third-party/tree.h	399;"	d
+RB_GENERATE_STATIC	third-party/tree.h	397;"	d
+RB_HEAD	third-party/tree.h	291;"	d
+RB_INF	third-party/tree.h	717;"	d
+RB_INIT	third-party/tree.h	299;"	d
+RB_INITIALIZER	third-party/tree.h	296;"	d
+RB_INSERT	third-party/tree.h	719;"	d
+RB_LEFT	third-party/tree.h	313;"	d
+RB_MAX	third-party/tree.h	726;"	d
+RB_MIN	third-party/tree.h	725;"	d
+RB_NEGINF	third-party/tree.h	716;"	d
+RB_NEXT	third-party/tree.h	723;"	d
+RB_NFIND	third-party/tree.h	722;"	d
+RB_NODE	parse_ctx.h	35;"	d
+RB_NODE_T	loader.c	/^bool rb_str_cmp(RB_NODE_T(string_tree_t)* n1, RB_NODE_T(string_tree_t)* n2)$/;"	f
+RB_NODE_T	parse_ctx.h	32;"	d
+RB_NODE_T_GEN	parse_ctx.h	9;"	d
+RB_NODE_T_GENC	parse_ctx.h	16;"	d
+RB_PARENT	third-party/tree.h	315;"	d
+RB_PREV	third-party/tree.h	724;"	d
+RB_PROTOTYPE	third-party/tree.h	376;"	d
+RB_PROTOTYPE_INTERNAL	third-party/tree.h	380;"	d
+RB_PROTOTYPE_STATIC	third-party/tree.h	378;"	d
+RB_RED	third-party/tree.h	304;"	d
+RB_REMOVE	third-party/tree.h	720;"	d
+RB_RIGHT	third-party/tree.h	314;"	d
+RB_ROOT	third-party/tree.h	317;"	d
+RB_ROTATE_LEFT	third-party/tree.h	335;"	d
+RB_ROTATE_RIGHT	third-party/tree.h	355;"	d
+RB_SET	third-party/tree.h	320;"	d
+RB_SET_BLACKRED	third-party/tree.h	326;"	d
+RB_TREE_T	parse_ctx.h	25;"	d
+RB_TREE_T_GEN	parse_ctx.h	29;"	d
+SIMPLEQ_CONCAT	third-party/queue.h	319;"	d
+SIMPLEQ_EMPTY	third-party/queue.h	269;"	d
+SIMPLEQ_END	third-party/queue.h	268;"	d
+SIMPLEQ_ENTRY	third-party/queue.h	259;"	d
+SIMPLEQ_FIRST	third-party/queue.h	267;"	d
+SIMPLEQ_FOREACH	third-party/queue.h	272;"	d
+SIMPLEQ_FOREACH_SAFE	third-party/queue.h	277;"	d
+SIMPLEQ_HEAD	third-party/queue.h	250;"	d
+SIMPLEQ_HEAD_INITIALIZER	third-party/queue.h	256;"	d
+SIMPLEQ_INIT	third-party/queue.h	285;"	d
+SIMPLEQ_INSERT_AFTER	third-party/queue.h	302;"	d
+SIMPLEQ_INSERT_HEAD	third-party/queue.h	290;"	d
+SIMPLEQ_INSERT_TAIL	third-party/queue.h	296;"	d
+SIMPLEQ_NEXT	third-party/queue.h	270;"	d
+SIMPLEQ_REMOVE_AFTER	third-party/queue.h	313;"	d
+SIMPLEQ_REMOVE_HEAD	third-party/queue.h	308;"	d
+SLIST_EMPTY	third-party/queue.h	112;"	d
+SLIST_END	third-party/queue.h	111;"	d
+SLIST_ENTRY	third-party/queue.h	102;"	d
+SLIST_FIRST	third-party/queue.h	110;"	d
+SLIST_FOREACH	third-party/queue.h	115;"	d
+SLIST_FOREACH_SAFE	third-party/queue.h	120;"	d
+SLIST_HEAD	third-party/queue.h	94;"	d
+SLIST_HEAD_INITIALIZER	third-party/queue.h	99;"	d
+SLIST_INIT	third-party/queue.h	128;"	d
+SLIST_INSERT_AFTER	third-party/queue.h	132;"	d
+SLIST_INSERT_HEAD	third-party/queue.h	137;"	d
+SLIST_LIST_T	task.h	27;"	d
+SLIST_LIST_T_GEN	loader.c	/^SLIST_LIST_T_GEN(tasklist_t, task_t)$/;"	f
+SLIST_LIST_T_GEN	tags	/^SLIST_LIST_T_GEN	loader.c	\/^SLIST_LIST_T_GEN(tasklist_t, task_t)$\/;"	f$/;"	p	file:
+SLIST_LIST_T_GEN	task.h	31;"	d
+SLIST_NEXT	third-party/queue.h	113;"	d
+SLIST_NODE	task.h	34;"	d
+SLIST_NODE_T	task.h	37;"	d
+SLIST_NODE_T_GEN	task.h	13;"	d
+SLIST_NODE_T_GENC	task.h	19;"	d
+SLIST_REMOVE	third-party/queue.h	150;"	d
+SLIST_REMOVE_AFTER	third-party/queue.h	142;"	d
+SLIST_REMOVE_HEAD	third-party/queue.h	146;"	d
+SPLAY_ASSEMBLE	third-party/tree.h	105;"	d
+SPLAY_EMPTY	third-party/tree.h	78;"	d
+SPLAY_ENTRY	third-party/tree.h	69;"	d
+SPLAY_FIND	third-party/tree.h	278;"	d
+SPLAY_FOREACH	third-party/tree.h	285;"	d
+SPLAY_GENERATE	third-party/tree.h	156;"	d
+SPLAY_HEAD	third-party/tree.h	57;"	d
+SPLAY_INF	third-party/tree.h	274;"	d
+SPLAY_INIT	third-party/tree.h	65;"	d
+SPLAY_INITIALIZER	third-party/tree.h	62;"	d
+SPLAY_INSERT	third-party/tree.h	276;"	d
+SPLAY_LEFT	third-party/tree.h	75;"	d
+SPLAY_LINKLEFT	third-party/tree.h	93;"	d
+SPLAY_LINKRIGHT	third-party/tree.h	99;"	d
+SPLAY_MAX	third-party/tree.h	282;"	d
+SPLAY_MIN	third-party/tree.h	280;"	d
+SPLAY_NEGINF	third-party/tree.h	273;"	d
+SPLAY_NEXT	third-party/tree.h	279;"	d
+SPLAY_PROTOTYPE	third-party/tree.h	114;"	d
+SPLAY_REMOVE	third-party/tree.h	277;"	d
+SPLAY_RIGHT	third-party/tree.h	76;"	d
+SPLAY_ROOT	third-party/tree.h	77;"	d
+SPLAY_ROTATE_LEFT	third-party/tree.h	87;"	d
+SPLAY_ROTATE_RIGHT	third-party/tree.h	81;"	d
+STD_ERR	loader.h	15;"	d
+STD_OUT	loader.h	16;"	d
+TAILQ_CONCAT	third-party/queue.h	527;"	d
+TAILQ_EMPTY	third-party/queue.h	436;"	d
+TAILQ_END	third-party/queue.h	429;"	d
+TAILQ_ENTRY	third-party/queue.h	419;"	d
+TAILQ_FIRST	third-party/queue.h	428;"	d
+TAILQ_FOREACH	third-party/queue.h	439;"	d
+TAILQ_FOREACH_REVERSE	third-party/queue.h	451;"	d
+TAILQ_FOREACH_REVERSE_SAFE	third-party/queue.h	456;"	d
+TAILQ_FOREACH_SAFE	third-party/queue.h	444;"	d
+TAILQ_HEAD	third-party/queue.h	410;"	d
+TAILQ_HEAD_INITIALIZER	third-party/queue.h	416;"	d
+TAILQ_INIT	third-party/queue.h	465;"	d
+TAILQ_INSERT_AFTER	third-party/queue.h	487;"	d
+TAILQ_INSERT_BEFORE	third-party/queue.h	497;"	d
+TAILQ_INSERT_HEAD	third-party/queue.h	470;"	d
+TAILQ_INSERT_TAIL	third-party/queue.h	480;"	d
+TAILQ_LAST	third-party/queue.h	431;"	d
+TAILQ_NEXT	third-party/queue.h	430;"	d
+TAILQ_PREV	third-party/queue.h	434;"	d
+TAILQ_REMOVE	third-party/queue.h	504;"	d
+TAILQ_REPLACE	third-party/queue.h	515;"	d
+TASK_GUARD	task.h	2;"	d
+XSIMPLEQ_EMPTY	third-party/queue.h	349;"	d
+XSIMPLEQ_END	third-party/queue.h	348;"	d
+XSIMPLEQ_ENTRY	third-party/queue.h	337;"	d
+XSIMPLEQ_FIRST	third-party/queue.h	347;"	d
+XSIMPLEQ_FOREACH	third-party/queue.h	353;"	d
+XSIMPLEQ_FOREACH_SAFE	third-party/queue.h	358;"	d
+XSIMPLEQ_HEAD	third-party/queue.h	330;"	d
+XSIMPLEQ_INIT	third-party/queue.h	366;"	d
+XSIMPLEQ_INSERT_AFTER	third-party/queue.h	385;"	d
+XSIMPLEQ_INSERT_HEAD	third-party/queue.h	372;"	d
+XSIMPLEQ_INSERT_TAIL	third-party/queue.h	379;"	d
+XSIMPLEQ_NEXT	third-party/queue.h	350;"	d
+XSIMPLEQ_REMOVE_AFTER	third-party/queue.h	398;"	d
+XSIMPLEQ_REMOVE_HEAD	third-party/queue.h	392;"	d
+XSIMPLEQ_XOR	third-party/queue.h	345;"	d
+_Q_INVALIDATE	third-party/queue.h	86;"	d
+_Q_INVALIDATE	third-party/queue.h	88;"	d
+_SYS_QUEUE_H_	third-party/queue.h	36;"	d
+_SYS_TREE_H_	third-party/tree.h	28;"	d
+bool	loader.h	5;"	d
+clear_parse_ctx	loader.c	/^void clear_parse_ctx(parse_ctx_t* pctx)$/;"	f	signature:(parse_ctx_t* pctx)
+cmd	task.h	/^  char* cmd;$/;"	m	struct:task_t	access:public
+cmdline	task.h	/^  char* cmdline;$/;"	m	struct:task_t	access:public
+dict	parse_ctx.h	/^  string_tree_t dict; $/;"	m	struct:parse_ctx_t	access:public
+error	loader.c	/^void error(char* err, bool critical)$/;"	f	signature:(char* err, bool critical)
+error	loader.h	/^extern void error(char* err, bool critical);$/;"	p	signature:(char* err, bool critical)
+eval	loader.c	/^char* eval(parse_ctx_t* pctx, char* varname)$/;"	f	signature:(parse_ctx_t* pctx, char* varname)
+execute_tasks	executor.c	/^void execute_tasks(tasklist_t tasklist, time_t t)$/;"	f	signature:(tasklist_t tasklist, time_t t)
+execute_tasks	executor.h	/^void execute_tasks(tasklist_t tasklist, time_t t);$/;"	p	signature:(tasklist_t tasklist, time_t t)
+execute_tasks	tags	/^execute_tasks	executor.h	\/^void execute_tasks(tasklist_t tasklist, time_t t);$\/;"	p	signature:(tasklist_t tasklist, time_t t)$/;"	p	file:	signature:(tasklist_t tasklist, time_t t)
+false	loader.h	7;"	d
+format	tags	/^!_TAG_FILE_FORMAT	2	\/extended format; --format=1 will not append ;" to lines\/$/;"	v
+get_inner_len	loader.c	/^int get_inner_len(char* ptr)$/;"	f	signature:(char* ptr)
+get_inner_name	loader.c	/^char* get_inner_name(char* ptr)$/;"	f	signature:(char* ptr)
+get_mtime	main.c	/^time_t get_mtime(char* filename)$/;"	f	signature:(char* filename)
+get_var_name	loader.c	/^char* get_var_name(char* ptr)$/;"	f	signature:(char* ptr)
+help	main.c	/^void help()$/;"	f
+init_parse_ctx	loader.c	/^void init_parse_ctx(parse_ctx_t* pctx)$/;"	f	signature:(parse_ctx_t* pctx)
+is_identifier_char	loader.c	/^bool is_identifier_char(char c)$/;"	f	signature:(char c)
+k	executor.o	/^ELF/;"	v
+loadFromFile	loader.c	/^tasklist_t loadFromFile(char* filename)$/;"	f	signature:(char* filename)
+loadFromFile	loader.h	/^extern tasklist_t loadFromFile(char* filename);$/;"	p	signature:(char* filename)
+main	main.c	/^int main(int argc, char * const argv[])$/;"	f	signature:(int argc, char * const argv[])
+main	test.c	/^int main()$/;"	f
+parse_assignment	loader.c	/^void parse_assignment(parse_ctx_t* pctx, char* line)$/;"	f	signature:(parse_ctx_t* pctx, char* line)
+parse_command	loader.c	/^void parse_command(char* line, tasklist_t* list)$/;"	f	signature:(char* line, tasklist_t* list)
+parse_ctx_set	loader.c	/^void parse_ctx_set(parse_ctx_t* pctx, char* key, char* value)$/;"	f	signature:(parse_ctx_t* pctx, char* key, char* value)
+parse_ctx_t	parse_ctx.h	/^typedef struct  parse_ctx_t$/;"	s
+parse_ctx_t	parse_ctx.h	/^} parse_ctx_t;$/;"	t	typeref:struct:parse_ctx_t
+parse_ctx_t::dict	parse_ctx.h	/^  string_tree_t dict; $/;"	m	struct:parse_ctx_t	access:public
+parse_line	loader.c	/^void parse_line(parse_ctx_t* pctx, char* line, tasklist_t* list)$/;"	f	signature:(parse_ctx_t* pctx, char* line, tasklist_t* list)
+parse_range	loader.c	/^void parse_range(char** line, intlist_t* list)$/;"	f	signature:(char** line, intlist_t* list)
+preprocess_line	loader.c	/^char* preprocess_line(parse_ctx_t* pctx, char* line)$/;"	f	signature:(parse_ctx_t* pctx, char* line)
+preprocess_line_length	loader.c	/^int preprocess_line_length(parse_ctx_t* pctx, char* line)$/;"	f	signature:(parse_ctx_t* pctx, char* line)
+run_daemon	main.c	/^void run_daemon(char* filename)$/;"	f	signature:(char* filename)
+run_daemonized	main.c	/^void run_daemonized(char* filename)$/;"	f	signature:(char* filename)
+stderror	loader.c	/^void stderror()$/;"	f
+stderror	loader.h	/^extern void stderror();$/;"	p
+task_destroy	loader.c	/^void task_destroy(task_t* task)$/;"	f	signature:(task_t* task)
+task_init	loader.c	/^void task_init(task_t* task)$/;"	f	signature:(task_t* task)
+task_t	task.h	/^typedef struct task_t$/;"	s
+task_t	task.h	/^} task_t;$/;"	t	typeref:struct:task_t
+task_t::cmd	task.h	/^  char* cmd;$/;"	m	struct:task_t	access:public
+task_t::cmdline	task.h	/^  char* cmdline;$/;"	m	struct:task_t	access:public
+task_t::times	task.h	/^  intlist_t times[5];$/;"	m	struct:task_t	access:public
+tasklist_clear	loader.c	/^void tasklist_clear(tasklist_t* tasklist)$/;"	f	signature:(tasklist_t* tasklist)
+tasklist_clear	loader.h	/^extern void tasklist_clear(tasklist_t* tasklist);$/;"	p	signature:(tasklist_t* tasklist)
+times	task.h	/^  intlist_t times[5];$/;"	m	struct:task_t	access:public
+timestamp	main.c	/^time_t timestamp()$/;"	f
+true	loader.h	6;"	d
+update_tasklist	main.c	/^tasklist_t update_tasklist(tasklist_t tasklist, char* filename, time_t* last_mtime)$/;"	f	signature:(tasklist_t tasklist, char* filename, time_t* last_mtime)

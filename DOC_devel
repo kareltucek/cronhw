@@ -1,0 +1,17 @@
+This file contains the top-level overview of the source code. Every source file has a high-level description of its purpose written in its header. Also every function has a description except for the trivial ones.
+
+The code is partitioned in the following manner:
+main.c -> main loop, thread management, output input management
+loader.c -> parsing of cron file into the task structure
+executor -> actual execution of tasks
+
+The data flow is the following:
+The daemon:
+  - initiates load/reload of cron file. <main.c>
+    - file is parsed into list of task_t structures and returned <loader.c>
+  - initiates execution of tasks every minute <main.c>
+    - executor checks for every task whether it is to be run at the time supplied and if so, runs it. <executor.c>
+      - task that is 'ran' is forked into its own shell and its output is redirected to a temporary file <executor.c>
+  - also clean is initiated <main.c>
+    - clean gathers all finished processes, takes their output and puts it into the output or a log <main.c>. This is done every minute.
+
