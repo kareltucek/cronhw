@@ -7,17 +7,16 @@
 #include <errno.h>
 #include <math.h>
 
-void 
+void
 stderror(int fd)
 {
 	error(strerror(errno), false, fd);
 }
 
-void 
-error(char* err, bool critical, int fd)
+void
+error(char *err, bool critical, int fd)
 {
 	write(fd, err, strlen(err));
-	if(critical)
+	if (critical)
 		exit(1);
 }
-
