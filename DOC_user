@@ -1,4 +1,4 @@
-Note: this codes were written as a school homework. They are not going to be maintained and are not meant to used in production. The only reason for publishing this is that its one of requirements. (the commit history is missing since I use an implicit versioning system on projects I don't intend to publish)
+Note: this code was written as a school homework. It is not going to be maintained and is not meant to be used in production. The only reason for publishing this is that its one of requirements. (the commit history is missing since I use an implicit versioning system on projects I don't intend to publish)
 
 general description
 ===================
@@ -16,14 +16,7 @@ variable expansion
 ==================
 Standard shell-like variables can be used in the file. Line in format of <varname>=<value> can be used to set the variable varname to the value 'value'. Later the variable may be used as $varname. Double dollar is resolved to a single dollar. Variables are not evaluated recursively. 
 
-LOGNAME and HOME are preset from env, SHELL is set to /bin/sh and path is set to /bin:/usr/bin by default. All of these values may be overriden.
-
-Example:
-========
-path=/media/data
-30 8-20 * * 2 backup $path
-
-This executes 'backup /media/data' 12 times on every wensday (at 8:30,9:30 ...)
+There are four variables set by default: LOGNAME, HOME, SHELL and PATH. LOGNAME and HOME are set from env, SHELL is set to /bin/sh and path is set to /bin:/usr/bin by default. All of these values may be overriden.
 
 compilation
 ===========
@@ -31,7 +24,26 @@ To compile this project, use the make command. The output file is mycrond.
 
 tests
 =====
-Some tests are provide with expected output in folders test1, test2, test3. 
+Some tests are provided with expected output in folders test1, test2, test3. 
 
 The binary was checked for memory leaks by valgrind.
+
+usage
+=====
+following options are available:
+-f <file> (for now obligatory)
+-d        daemonize
+-s        silent
+-o        once (for memtest purposes)
+
+Example:
+========
+cronfile:
+path=/media/data
+30 8-20 * * 2 backup $path
+
+command:
+mycrond -f cronfile
+
+This executes 'backup /media/data' 12 times on every wensday (at 8:30,9:30 ...)
 
