@@ -94,18 +94,22 @@ execute_task(task_t task)
 		stderror(STD_ERR);
 	if (pid == 0)
 	{
-		int mypid = getpid();
-		char * name = get_tmp_name(ppid, mypid);
-		int errfd = dup(STD_ERR);
-		if (close(STD_ERR) < 0) stderror(errfd);
-		if (open(name, O_WRONLY | O_CREAT, 0660) < 0) stderror(errfd);
-		if (close(STD_OUT) < 0) stderror(errfd);
-		if (dup(STD_ERR) < 0) stderror(errfd);
-		free(name);
 		char * argv[] = {"/bin/sh", "-c", task.cmd, NULL};
-		char * msg = "executing command "; write(STD_OUT, msg, strlen(msg));
-		write(STD_OUT, task.cmd, strlen(task.cmd));
-		char * nl = "\n"; write(STD_OUT, nl, strlen(nl));
+                                int errfd = STD_OUT;
+                                if(!get_silent())
+                                {
+                                	int mypid = getpid();
+                                	char * name = get_tmp_name(ppid, mypid);
+                                	errfd = dup(STD_ERR);
+                                	if (close(STD_ERR) < 0) stderror(errfd);
+                                	if (open(name, O_WRONLY | O_CREAT, 0660) < 0) stderror(errfd);
+                                	if (close(STD_OUT) < 0) stderror(errfd);
+                                	if (dup(STD_ERR) < 0) stderror(errfd);
+                                	free(name);
+                                	PRINT("executing command ", STD_OUT, errfd)
+                                	PRINT(task.cmd, STD_OUT, errfd)
+                                	PRINT("\n", STD_OUT, errfd)
+                                }
 		if (!execv("/bin/sh", argv)) stderror(errfd);
 	}
 }

@@ -52,7 +52,8 @@ getline(int fd, char ** lineptr)
 	}
 	char * line = (char *)malloc((nlpos+1)*sizeof (char));
 	lseek(fd, fp, SEEK_SET);
-	read(fd, line, nlpos+1);
+	if(read(fd, line, nlpos+1) < 0)
+                	stderror(STD_ERR);
 	line[nlpos] = '\0';
 	*lineptr = line;
 	return (bytes_read > 0);
@@ -414,14 +415,17 @@ parse_line(parse_ctx_t * pctx, char * line, tasklist_t * list)
 		free(newline);
 }
 
+	
+
+
+
 /*
  * Loads file and feeds the lines into the parse_line above.
  */
 tasklist_t
 loadFromFile(char * filename)
 {
-	char * msg = "loading config file\n";
-	write(STD_OUT, 	msg, strlen(msg));
+	PRINT("loading config file\n", STD_OUT, STD_ERR)
 	tasklist_t list = SLIST_HEAD_INITIALIZER(head);
 	int fd = open(filename, O_RDONLY);
 	if (fd < 0)

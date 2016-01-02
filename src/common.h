@@ -10,7 +10,14 @@
 
 #define STD_ERR 2
 #define STD_OUT 1
+
 extern void error(char * err, bool critical, int fd);
 extern void stderror(int fd);
 extern char *itoa(int n);
-extern char * concat(char *s1, char *s2) ;
+extern char *concat(char *s1, char *s2) ;
+extern bool get_silent();
+extern void set_silent(bool silent);
+
+#define PRINT(msg, out, err) \
+	if(write(out, msg, strlen(msg)) < 0) \
+		stderror(err);

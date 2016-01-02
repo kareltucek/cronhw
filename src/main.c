@@ -79,23 +79,27 @@ update_tasklist(tasklist_t tasklist, char * filename, time_t * last_mtime)
 void
 catpid(int status, int pid)
 {
-	char * name = get_tmp_name(getpid(), pid);
-	int fd = open(name, O_RDONLY);
-	if (!fd) stderror(STD_ERR);
-	char buff[BUFFSIZE];
-	int bytes_read;
-	while ((bytes_read = read(fd, buff, BUFFSIZE)) > 0)
-		write(STD_OUT, buff, bytes_read);
-	char * msg = "process exitted with status ";
-	char * spid = itoa(status);
-	char * nl = "\n";
-	write(STD_OUT, msg, strlen(msg));
-	write(STD_OUT, spid, strlen(spid));
-	write(STD_OUT, nl, strlen(nl));
-	write(STD_OUT, nl, strlen(nl));
-	write(STD_OUT, nl, strlen(nl));
-	free(spid);
-	free(name);
+	if (!get_silent())
+                {
+		char * name = get_tmp_name(getpid(), pid);
+		int fd = open(name, O_RDONLY);
+		if (!fd) stderror(STD_ERR);
+		char buff[BUFFSIZE];
+		int bytes_read;
+		while ((bytes_read = read(fd, buff, BUFFSIZE)) > 0)
+			if (write(STD_OUT, buff, bytes_read) < 0)
+                                               		stderror(STD_ERR);
+		char * msg = "process exitted with status ";
+		char * spid = itoa(status);
+		char * nl = "\n";
+		PRINT(msg, STD_OUT, STD_ERR);
+		PRINT(spid, STD_OUT, STD_ERR);
+		PRINT(nl, STD_OUT, STD_ERR);
+		PRINT(nl, STD_OUT, STD_ERR);
+		PRINT(nl, STD_OUT, STD_ERR);
+		free(spid);
+		free(name);
+	}
 }
 
 /*
@@ -176,6 +180,7 @@ main(int argc, char * const argv[])
 	char * filename = "";
 	bool daemonized = false;
 	bool once = false;
+  set_silent(false);
 	while ((opt = getopt(argc, argv, "sdof:")) != -1)
 		switch (opt) {
 			case 'o':
@@ -191,6 +196,7 @@ main(int argc, char * const argv[])
 				close(0);
 				close(1);
 				close(2);
+        set_silent(true);
 				break;
 			default:
 				help();
