@@ -23,16 +23,16 @@
 
 #define RB_NODE_T_GENC(name, typek, typev) \
 	name* name##_RB_NODE_CONSTRUCTOR(typek d, typev e) \
-	{ \
-		name* node = (name*)malloc(sizeof(name)); \
-		node->key = d; \
-		node->value = e; \
-		return (node); \
-	}
+{ \
+	name* node = (name*)malloc(sizeof(name)); \
+	node->key = d; \
+	node->value = e; \
+	return (node); \
+}
 
 #define RB_TREE_T(name, typek, typev) \
 	RB_NODE_T_GEN(name##_node_t,	typek, typev) \
-	typedef RB_HEAD(name, name##_node_t) name;
+typedef RB_HEAD(name, name##_node_t) name;
 
 #define RB_TREE_T_GEN(name, typek, typev) \
 	RB_NODE_T_GENC(name##_node_t,	typek, typev)

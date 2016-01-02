@@ -23,9 +23,9 @@ rb_str_cmp(RB_NODE_T(string_tree_t)* n1, RB_NODE_T(string_tree_t)* n2)
 	return (strcmp(n1->key, n2->key));
 }
 
-RB_GENERATE(string_tree_t, RB_NODE_T(string_tree_t), entry, rb_str_cmp)
-RB_TREE_T_GEN(string_tree_t, char *, char *)
-SLIST_LIST_T_GEN(tasklist_t, task_t)
+	RB_GENERATE(string_tree_t, RB_NODE_T(string_tree_t), entry, rb_str_cmp)
+	RB_TREE_T_GEN(string_tree_t, char *, char *)
+	SLIST_LIST_T_GEN(tasklist_t, task_t)
 SLIST_LIST_T_GEN(intlist_t, int)
 
 	/*
@@ -52,8 +52,8 @@ getline(int fd, char ** lineptr)
 	}
 	char * line = (char *)malloc((nlpos+1)*sizeof (char));
 	lseek(fd, fp, SEEK_SET);
-	if(read(fd, line, nlpos+1) < 0)
-                	stderror(STD_ERR);
+	if (read(fd, line, nlpos+1) < 0)
+		stderror(STD_ERR);
 	line[nlpos] = '\0';
 	*lineptr = line;
 	return (bytes_read > 0);
@@ -283,7 +283,7 @@ preprocess_line(parse_ctx_t * pctx, char * line)
  * being put into the list. '*' is resolved to -1
  */
 void
-parse_range(char ** line, intlist_t * list)
+parse_range(char ** line, intlist_t * list, char * origline)
 {
 	char * ptr = *line;
 	while (*ptr == ' ')
@@ -314,7 +314,7 @@ parse_range(char ** line, intlist_t * list)
 					if (lnum > cnum)
 					{
 						error("warning: start of range is bigger than its end:", false, STD_ERR);
-						error(*line, false, STD_ERR);
+						error(origline, false, STD_ERR);
 					}
 					for (int i = lnum; i <= cnum; i++)
 					{
@@ -340,7 +340,8 @@ parse_range(char ** line, intlist_t * list)
 				break;
 			default:
 				error("crontab load failed - expected *, number or a range specification on line:", false, STD_ERR);
-				error(*line, false, STD_ERR);
+				error(origline, true, STD_ERR);
+				return;
 				break;
 		}
 		if (*ptr == ' ')
@@ -360,9 +361,10 @@ parse_command(char * line, tasklist_t * list)
 	task_t task;
 	task_init(&task);
 	task.cmdline = line;
-	for (int i = 0; i < 5;	i++)
+	char * origline = line;
+	for (int i = 0; i < 5; i++)
 	{
-		parse_range(&line, &task.times[i]);
+		parse_range(&line, &task.times[i], origline);
 	}
 	task.cmd = line;
 	SLIST_NODE_T(tasklist_t)* n = SLIST_NODE(tasklist_t, task);
@@ -415,7 +417,7 @@ parse_line(parse_ctx_t * pctx, char * line, tasklist_t * list)
 		free(newline);
 }
 
-	
+
 
 
 
@@ -426,7 +428,7 @@ tasklist_t
 loadFromFile(char * filename)
 {
 	PRINT("loading config file\n", STD_OUT, STD_ERR)
-	tasklist_t list = SLIST_HEAD_INITIALIZER(head);
+		tasklist_t list = SLIST_HEAD_INITIALIZER(head);
 	int fd = open(filename, O_RDONLY);
 	if (fd < 0)
 	{

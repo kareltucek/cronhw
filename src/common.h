@@ -20,4 +20,4 @@ extern void set_silent(bool silent);
 
 #define PRINT(msg, out, err) \
 	if(write(out, msg, strlen(msg)) < 0) \
-		stderror(err);
+stderror(err);

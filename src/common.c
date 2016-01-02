@@ -18,20 +18,20 @@ bool silent;
 void
 set_silent(bool s)
 {
-  silent = s;
+	silent = s;
 }
 
-bool 
+bool
 get_silent()
 {
-	return silent;
+	return (silent);
 }
 
 void
 error(char *err, bool critical, int fd)
 {
 	if (write(fd, err, strlen(err)) < 0)
-                	exit(1);
+		exit(1);
 	if (critical)
 		exit(1);
 }

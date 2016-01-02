@@ -26,15 +26,15 @@
 
 #define SLIST_NODE_T_GENC(name,	type) \
 	name* name##_SLIST_CONSTRUCTOR(type d) \
-	{ \
-		name* node = (name*)malloc(sizeof(name)); \
-		node->data = d; \
-		return (node); \
-	}
+{ \
+	name* node = (name*)malloc(sizeof(name)); \
+	node->data = d; \
+	return (node); \
+}
 
 #define SLIST_LIST_T(name, type) \
 	SLIST_NODE_T_GEN(name##_node_t,	type) \
-	typedef SLIST_HEAD(name, name##_node_t) name;
+typedef SLIST_HEAD(name, name##_node_t) name;
 
 #define SLIST_LIST_T_GEN(name, type) \
 	SLIST_NODE_T_GENC(name##_node_t,	type)

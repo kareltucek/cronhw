@@ -2,5 +2,5 @@ var=varvalue
 1 2 3 4 5 command
 #comment
 * * * * 1-4,5,6,0 echo $var $$notvar #comment
-* * * * * echo second process running correctly 
+* * * * * sleep 1; echo second process running correctly 
 

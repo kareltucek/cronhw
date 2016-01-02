@@ -95,21 +95,21 @@ execute_task(task_t task)
 	if (pid == 0)
 	{
 		char * argv[] = {"/bin/sh", "-c", task.cmd, NULL};
-                                int errfd = STD_OUT;
-                                if(!get_silent())
-                                {
-                                	int mypid = getpid();
-                                	char * name = get_tmp_name(ppid, mypid);
-                                	errfd = dup(STD_ERR);
-                                	if (close(STD_ERR) < 0) stderror(errfd);
-                                	if (open(name, O_WRONLY | O_CREAT, 0660) < 0) stderror(errfd);
-                                	if (close(STD_OUT) < 0) stderror(errfd);
-                                	if (dup(STD_ERR) < 0) stderror(errfd);
-                                	free(name);
-                                	PRINT("executing command ", STD_OUT, errfd)
-                                	PRINT(task.cmd, STD_OUT, errfd)
-                                	PRINT("\n", STD_OUT, errfd)
-                                }
+		int errfd = STD_OUT;
+		if (!get_silent())
+		{
+			int mypid = getpid();
+			char * name = get_tmp_name(ppid, mypid);
+			errfd = dup(STD_ERR);
+			if (close(STD_ERR) < 0) stderror(errfd);
+			if (open(name, O_WRONLY | O_CREAT, 0660) < 0) stderror(errfd);
+			if (close(STD_OUT) < 0) stderror(errfd);
+			if (dup(STD_ERR) < 0) stderror(errfd);
+			free(name);
+			PRINT("executing command ", STD_OUT, errfd)
+				PRINT(task.cmd, STD_OUT, errfd)
+				PRINT("\n", STD_OUT, errfd)
+		}
 		if (!execv("/bin/sh", argv)) stderror(errfd);
 	}
 }
@@ -139,4 +139,3 @@ execute_tasks(tasklist_t tasklist, time_t t)
 	SLIST_FOREACH(ptr, &tasklist, entry)
 		handle_task(ptr->data, t);
 }
-

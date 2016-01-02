@@ -21,7 +21,7 @@
 /*
  * This file contains the toplevel management stuff.
  *
- **/
+ */
 
 void
 help()
@@ -30,9 +30,9 @@ help()
 	str = "syntax: crond [OPTIONS] -f <cronfile>\n"; write(STD_OUT, str, strlen(str));
 	str = "options: \n"; write(STD_OUT, str, strlen(str));
 	str = "	-f <file> (for now obligatory)\n"; write(STD_OUT, str, strlen(str));
-	str = "	-d				daemonize\n"; write(STD_OUT, str, strlen(str));
-	str = "	-s				silent\n"; write(STD_OUT, str, strlen(str));
-	str = "	-o				once (for memtest purposes)\n"; write(STD_OUT, str, strlen(str));
+	str = "	-d daemonize"; write(STD_OUT, str, strlen(str));
+	str = "	-s silent"; write(STD_OUT, str, strlen(str));
+	str = "	-o once (for testing)"; write(STD_OUT, str, strlen(str));
 }
 
 /*
@@ -80,7 +80,7 @@ void
 catpid(int status, int pid)
 {
 	if (!get_silent())
-                {
+	{
 		char * name = get_tmp_name(getpid(), pid);
 		int fd = open(name, O_RDONLY);
 		if (!fd) stderror(STD_ERR);
@@ -88,7 +88,7 @@ catpid(int status, int pid)
 		int bytes_read;
 		while ((bytes_read = read(fd, buff, BUFFSIZE)) > 0)
 			if (write(STD_OUT, buff, bytes_read) < 0)
-                                               		stderror(STD_ERR);
+				stderror(STD_ERR);
 		char * msg = "process exitted with status ";
 		char * spid = itoa(status);
 		char * nl = "\n";
@@ -180,7 +180,7 @@ main(int argc, char * const argv[])
 	char * filename = "";
 	bool daemonized = false;
 	bool once = false;
-  set_silent(false);
+	set_silent(false);
 	while ((opt = getopt(argc, argv, "sdof:")) != -1)
 		switch (opt) {
 			case 'o':
@@ -196,7 +196,7 @@ main(int argc, char * const argv[])
 				close(0);
 				close(1);
 				close(2);
-        set_silent(true);
+				set_silent(true);
 				break;
 			default:
 				help();
