@@ -2,7 +2,6 @@
 #include "loader.h"
 #include "task.h"
 #include "executor.h"
-#include <stdio.h>
 #include <unistd.h>
 #include <string.h>
 #include <time.h>
@@ -13,7 +12,6 @@
 #include <sys/types.h>
 #include <unistd.h>
 #include <fcntl.h>
-#include <stdio.h>
 
 #include <sys/wait.h>
 #include "common.h"
