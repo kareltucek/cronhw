@@ -1,2 +1,2 @@
 loading config file
-crontab load failed - expected *, number or a range specification on line: command
+crontab load failed - expected *, number or a range specification on line:* * * command

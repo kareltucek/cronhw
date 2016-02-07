@@ -8,6 +8,9 @@
 #include <fcntl.h>
 #include "common.h"
 #include <string.h>
+#include <stdio.h>
+
+extern int setenv (__const char *__name, __const char *__value, int __replace);
 
 /*
  * Loader contains set of functions used to load commands from a file and store them into a
@@ -115,6 +118,12 @@ parse_ctx_set(parse_ctx_t * pctx, char * key, char * value)
 	RB_INSERT(string_tree_t, &pctx->dict, RB_NODE(string_tree_t, key, value));
 }
 
+char*
+sinit(char* str)
+{
+	return (concat(str, ""));
+}
+
 /*
  * Initializes a parser context.
  */
@@ -122,11 +131,11 @@ void
 init_parse_ctx(parse_ctx_t * pctx)
 {
 	RB_INIT(&pctx->dict);
-	parse_ctx_set(pctx, strdup("$"), strdup("$"));
-	parse_ctx_set(pctx, strdup("SHELL"), strdup("/bin/sh"));
-	parse_ctx_set(pctx, strdup("PATH"), strdup("/usr/bin:/bin"));
-	parse_ctx_set(pctx, strdup("LOGNAME"), strdup(getenv("USER")));
-	parse_ctx_set(pctx, strdup("HOME"), strdup(getenv("HOME")));
+	parse_ctx_set(pctx, sinit("$"), sinit("$"));
+	parse_ctx_set(pctx, sinit("SHELL"), sinit("/bin/sh"));
+	parse_ctx_set(pctx, sinit("PATH"), sinit("/usr/bin:/bin"));
+	parse_ctx_set(pctx, sinit("LOGNAME"), sinit(getenv("USER")));
+	parse_ctx_set(pctx, sinit("HOME"), sinit(getenv("HOME")));
 }
 
 void
@@ -143,9 +152,9 @@ clear_parse_ctx(parse_ctx_t * pctx)
 }
 
 bool
-is_identifier_char(char c)
+is_identifier_char(char c, bool first)
 {
-	return (c == '_' || ('a' <= c && c <= 'z') || ('A' <= c && c <= 'Z') || ('0' <= c && c <= '9'));
+	return (c == '_' || ('a' <= c && c <= 'z') || ('A' <= c && c <= 'Z') || (!first && '0' <= c && c <= '9'));
 }
 
 /*
@@ -177,7 +186,7 @@ get_inner_len(char * ptr)
 	{
 		return (1);
 	}
-	while (is_identifier_char(*ptr2))
+	while (is_identifier_char(*ptr2, ptr == ptr2))
 	{
 		len++;
 		ptr2++;
@@ -373,6 +382,7 @@ parse_command(char * line, tasklist_t * list)
  */
 void parse_assignment(parse_ctx_t * pctx, char * line) {
 	int len = get_inner_len(line);
+                int res;
 	if (line[len] != '=')
 	{
 		error("error: expected '=' after identifier in line: ", false, STD_ERR);
@@ -380,9 +390,9 @@ void parse_assignment(parse_ctx_t * pctx, char * line) {
 		return;
 	}
 	char * varname = get_inner_name(line);
-	char * value = get_inner_name(line+len+1);
+	char * value = concat(line+len+1, "");
 	parse_ctx_set(pctx, varname, value);
-                setenv(varname, value, true);
+                res = setenv(varname, value, true); CHECK(res, "setenv failed")
 	free(line);
 }
 
