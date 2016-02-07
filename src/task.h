@@ -27,7 +27,7 @@
 #define SLIST_NODE_T_GENC(name,	type) \
 	name* name##_SLIST_CONSTRUCTOR(type d) \
 { \
-	name* node = (name*)malloc(sizeof(name)); \
+	name* node = (name*)malloc(sizeof(name)); CHECKP(node, "alloc error"); \
 	node->data = d; \
 	return (node); \
 }

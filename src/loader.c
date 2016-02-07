@@ -7,6 +7,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include "common.h"
+#include <string.h>
 
 /*
  * Loader contains set of functions used to load commands from a file and store them into a
@@ -49,7 +50,7 @@ getline(int fd, char ** lineptr)
 		if (bytes_read == 0 || buff[pos] == '\n')
 			break;
 	}
-	char * line = (char *)malloc((nlpos+1)*sizeof (char));
+	char * line = (char *)malloc((nlpos+1)*sizeof (char)); CHECKP(line, "alloc error")
 	lseek(fd, fp, SEEK_SET);
 	if (read(fd, line, nlpos+1) < 0)
 		stderror(STD_ERR);
@@ -107,14 +108,11 @@ parse_ctx_set(parse_ctx_t * pctx, char * key, char * value)
 	find.key = key;
 	res = RB_FIND(string_tree_t, &pctx->dict, &find);
 	if (res != NULL)
+                {
 		RB_REMOVE(string_tree_t, &pctx->dict, res);
+                                free(res);
+                }
 	RB_INSERT(string_tree_t, &pctx->dict, RB_NODE(string_tree_t, key, value));
-}
-
-char *
-sinit(char * a)
-{
-	return (concat(a, ""));
 }
 
 /*
@@ -124,11 +122,11 @@ void
 init_parse_ctx(parse_ctx_t * pctx)
 {
 	RB_INIT(&pctx->dict);
-	parse_ctx_set(pctx, sinit("$"), sinit("$"));
-	parse_ctx_set(pctx, sinit("SHELL"), sinit("/bin/sh"));
-	parse_ctx_set(pctx, sinit("PATH"), sinit("/usr/bin:/bin"));
-	parse_ctx_set(pctx, sinit("LOGNAME"), sinit(getenv("USER")));
-	parse_ctx_set(pctx, sinit("HOME"), sinit(getenv("HOME")));
+	parse_ctx_set(pctx, strdup("$"), strdup("$"));
+	parse_ctx_set(pctx, strdup("SHELL"), strdup("/bin/sh"));
+	parse_ctx_set(pctx, strdup("PATH"), strdup("/usr/bin:/bin"));
+	parse_ctx_set(pctx, strdup("LOGNAME"), strdup(getenv("USER")));
+	parse_ctx_set(pctx, strdup("HOME"), strdup(getenv("HOME")));
 }
 
 void
@@ -147,7 +145,7 @@ clear_parse_ctx(parse_ctx_t * pctx)
 bool
 is_identifier_char(char c)
 {
-	return (c == '_' || ('a' <= c && c <= 'z') || ('A' <= c && c <= 'Z'));
+	return (c == '_' || ('a' <= c && c <= 'z') || ('A' <= c && c <= 'Z') || ('0' <= c && c <= '9'));
 }
 
 /*
@@ -194,7 +192,7 @@ char *
 get_inner_name(char * ptr)
 {
 	int len = get_inner_len(ptr);
-	char * varname = malloc((len+1)*sizeof (char));
+	char * varname = malloc((len+1)*sizeof (char)); CHECKP(varname, "alloc err")
 	varname[len] = '\0';
 	for (int i = 0; i < len; i++)
 		varname[i] = ptr[i];
@@ -238,7 +236,7 @@ char *
 preprocess_line(parse_ctx_t * pctx, char * line)
 {
 	int newlen = preprocess_line_length(pctx, line);
-	char * newline = (char *)malloc((newlen+1)*sizeof (char));
+	char * newline = (char *)malloc((newlen+1)*sizeof (char)); CHECKP(newline, "alloc err")
 	newline[newlen] = '\0';
 
 	char * ptr = line;
@@ -378,12 +376,13 @@ void parse_assignment(parse_ctx_t * pctx, char * line) {
 	if (line[len] != '=')
 	{
 		error("error: expected '=' after identifier in line: ", false, STD_ERR);
-		error(line, false, STD_ERR);
+		error(line, true, STD_ERR);
 		return;
 	}
 	char * varname = get_inner_name(line);
 	char * value = get_inner_name(line+len+1);
 	parse_ctx_set(pctx, varname, value);
+                setenv(varname, value, true);
 	free(line);
 }
 
@@ -424,7 +423,7 @@ parse_line(parse_ctx_t * pctx, char * line, tasklist_t * list)
  * Loads file and feeds the lines into the parse_line above.
  */
 tasklist_t
-loadFromFile(char * filename)
+load_from_file(char * filename)
 {
 	PRINT("loading config file\n", STD_OUT, STD_ERR)
 		tasklist_t list = SLIST_HEAD_INITIALIZER(head);

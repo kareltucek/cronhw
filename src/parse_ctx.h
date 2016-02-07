@@ -24,7 +24,7 @@
 #define RB_NODE_T_GENC(name, typek, typev) \
 	name* name##_RB_NODE_CONSTRUCTOR(typek d, typev e) \
 { \
-	name* node = (name*)malloc(sizeof(name)); \
+	name* node = (name*)malloc(sizeof(name)); CHECKP(node, "alloc error") \
 	node->key = d; \
 	node->value = e; \
 	return (node); \

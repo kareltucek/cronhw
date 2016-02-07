@@ -28,21 +28,11 @@ help()
 	str = "syntax: crond [OPTIONS] -f <cronfile>\n"; write(STD_OUT, str, strlen(str));
 	str = "options: \n"; write(STD_OUT, str, strlen(str));
 	str = "	-f <file> (for now obligatory)\n"; write(STD_OUT, str, strlen(str));
-	str = "	-d daemonize"; write(STD_OUT, str, strlen(str));
-	str = "	-s silent"; write(STD_OUT, str, strlen(str));
-	str = "	-o once (for testing)"; write(STD_OUT, str, strlen(str));
+	str = "	-d daemonize\n"; write(STD_OUT, str, strlen(str));
+	str = "	-s silent\n"; write(STD_OUT, str, strlen(str));
+	str = "	-o once (for testing)\n"; write(STD_OUT, str, strlen(str));
 }
 
-/*
- * returns current timestamp
- */
-time_t
-timestamp()
-{
-	time_t t;
-	time(&t);
-	return (t);
-}
 
 time_t
 get_mtime(char * filename)
@@ -66,7 +56,7 @@ update_tasklist(tasklist_t tasklist, char * filename, time_t * last_mtime)
 	{
 		*last_mtime = mtime;
 		tasklist_clear(tasklist);
-		return (loadFromFile(filename));
+		return (load_from_file(filename));
 	}
 	return (tasklist);
 }
@@ -124,8 +114,8 @@ void
 run_daemon(char * filename, bool once)
 {
 	time_t last_mtime = get_mtime(filename);
-	tasklist_t tasklist = loadFromFile(filename);
-	time_t now = timestamp();
+	tasklist_t tasklist = load_from_file(filename);
+	time_t now = time(NULL);
 	while (true)
 	{
 		time_t next = now + 60 - now%60;
@@ -138,7 +128,7 @@ run_daemon(char * filename, bool once)
 			clean(true);
 			exit(0);
 		}
-		time_t then = timestamp();
+		time_t then = time(NULL);
 		if (then > next)
 			error("warning: forking sheduled processes took over one minute! We are behind schedule!\n", false, STD_ERR);
 		else

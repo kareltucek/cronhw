@@ -11,6 +11,9 @@
 #define STD_ERR 2
 #define STD_OUT 1
 
+#define CHECK(a, err) if(a == -1) { error(err, true, 2); }
+#define CHECKP(a, err) if(a == NULL) { error(err, true, 2); }
+
 extern void error(char * err, bool critical, int fd);
 extern void stderror(int fd);
 extern char *itoa(int n);

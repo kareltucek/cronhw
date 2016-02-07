@@ -4,7 +4,6 @@
 #include <sys/types.h>
 #include <unistd.h>
 #include <errno.h>
-#include <math.h>
 
 void
 stderror(int fd)
@@ -12,7 +11,7 @@ stderror(int fd)
 	error(strerror(errno), false, fd);
 }
 
-bool silent;
+static bool silent;
 
 void
 set_silent(bool s)
@@ -34,3 +33,4 @@ error(char *err, bool critical, int fd)
 	if (critical)
 		exit(1);
 }
+
