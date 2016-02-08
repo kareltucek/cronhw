@@ -10,7 +10,7 @@
 #include <string.h>
 #include <stdio.h>
 
-extern int setenv (__const char *__name, __const char *__value, int __replace);
+extern int setenv (const char *__name, const char *__value, int __replace);
 
 /*
  * Loader contains set of functions used to load commands from a file and store them into a
