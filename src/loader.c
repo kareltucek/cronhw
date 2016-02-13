@@ -37,7 +37,7 @@ SLIST_LIST_T_GEN(intlist_t, int)
 	 * making a copy of the data
 	 */
 bool
-getline(int fd, char ** lineptr)
+my_getline(int fd, char ** lineptr)
 {
 	int fp = lseek(fd, 0, SEEK_CUR);
 	char buff[BUFFSIZE];
@@ -446,7 +446,7 @@ load_from_file(char * filename)
 	char * line;
 	parse_ctx_t pctx;
 	init_parse_ctx(&pctx);
-	while (getline(fd, &line))
+	while (my_getline(fd, &line))
 	{
 		parse_line(&pctx, line, &list);
 	}
